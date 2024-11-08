@@ -60,15 +60,22 @@
     </section>
 
     
-    <section id="updateMembership" class="hidden">
-        <h2>Update Membership</h2>
-        <form id="updateMembershipForm">
-            <label for="updateMemberId">Member ID:</label>
-            <input type="text" id="updateMemberId" required placeholder="Enter member ID to update">
-            
-            <button type="submit"  onclick="alert('submitted successfully')">Update Membership</button>
-        </form>
-    </section>
+   <section id="updateMembership" class="hidden">
+    <h2>Update Membership</h2>
+    <form id="updateMembershipForm" action="your-server-endpoint" method="POST">
+        <label for="updateMemberId">Member ID:</label>
+        <input type="text" id="updateMemberId" name="updateMemberId" required placeholder="Enter member ID to update">
+        
+        <label for="membershipDuration">Select Membership Duration:</label>
+        <select id="membershipDuration" name="membershipDuration" required>
+            <option value="6 months" selected>6 months</option>
+            <option value="1 year">1 year</option>
+            <option value="2 years">2 years</option>
+        </select>
+
+        <button type="submit">Update Membership</button>
+    </form>
+</section>
 
     
     <section id="payFine" class="hidden">
