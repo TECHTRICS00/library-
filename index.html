@@ -39,7 +39,7 @@
         <form id="issueBookForm">
             <label for="bookName">Book Name:</label>
             <input type="text" id="bookName" required>
-            <label for="authorName">Author Name (Auto-populated):</label>
+            <label for="authorName">Author Name:</label>
             <input type="text" id="authorName" readonly>
             <label for="issueDate">Issue Date:</label>
             <input type="date" id="issueDate" min="" required>
@@ -117,12 +117,12 @@
 
           
           <div id='newUserFields'>
-              <label for='newUserName'>Name (mandatory):</label> 
-              <input type='text' id='newUserName' required placeholder='Enter your name'>
+              <label for='newUserName'>Name:</label> 
+              <input type='text' id='newUserName' required placeholder='Enter your name' required>
           </div> 
           <div id='existingUserFields' style='display:none;'> 
               <label for='existingUserId'>User ID:</label> 
-              <input type='text' id='existingUserId' placeholder='Enter user ID'>
+              <input type='text' id='existingUserId' placeholder='Enter user ID' required>
           </div> 
           <button type='submit' onclick="alert('submitted successfully')">Submit</button> 
       </form> 
@@ -201,53 +201,26 @@
    
 </style>
 
-<script>
 
-function showSection(sectionId) {
-    
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-       section.classList.remove('visible');
-       section.classList.add('hidden');
-     });
 
-     
-     const selectedSection = document.getElementById(sectionId);
-     selectedSection.classList.remove('hidden');
-     selectedSection.classList.add('visible');
-}
-
-function toggleUserFields() {
-    const newUserFields = document.getElementById('newUserFields');
-    const existingUserFields = document.getElementById('existingUserFields');
-    
-    if (document.querySelector('input[name=userType]:checked').value === 'new') {
-        newUserFields.style.display = 'block';
-        existingUserFields.style.display = 'none';
-    } else {
-        newUserFields.style.display = 'none';
-        existingUserFields.style.display = 'block';
-    }
-}
-</script>
 
 
 <section id="issueBook" class="hidden">
     <h2>Issue Book</h2>
     <form id="issueBookForm" onsubmit="return validateIssueBookForm(event)">
-        <label for="bookName">Name of Book (required):</label>
+        <label for="bookName">Name of Book:</label>
         <input type="text" id="bookName" required placeholder="Enter book name" oninput="populateAuthor()">
         
-        <label for="authorName">Name of Author (Auto-populated):</label>
+        <label for="authorName">Name of Author :</label>
         <input type="text" id="authorName" readonly>
 
-        <label for="issueDate">Issue Date (cannot be less than today):</label>
+        <label for="issueDate">Issue Date :</label>
         <input type="date" id="issueDate" min="" required>
 
-        <label for="returnDate">Return Date (auto-populated +15 days):</label>
+        <label for="returnDate">Return Date :</label>
         <input type="date" id="returnDate" required>
 
-        <label for="remarks">Remarks (optional):</label>
+        <label for="remarks">Remarks :</label>
         <textarea id="remarks" rows="3"></textarea>
 
         <button type="submit" onclick="alert('submitted successfully')">Issue Book</button>
@@ -285,36 +258,8 @@ function toggleUserFields() {
     <div id="membershipErrorMessage" class="error-message hidden"></div>
 </section>
 
-<script>
 
-function validateAddMembershipForm(event) {
-    event.preventDefault(); 
 
-    const memberName = document.getElementById('memberName').value;
-
-    let errorMessage = "";
-
-    if (!memberName) {
-        errorMessage += "Member name is mandatory.<br>";
-    }
-
-    const membershipErrorMessageDiv = document.getElementById('membershipErrorMessage');
-
-    if (errorMessage) {
-        membershipErrorMessageDiv.innerHTML = errorMessage;
-        membershipErrorMessageDiv.classList.remove('hidden');
-        return false;
-    } else {
-        membershipErrorMessageDiv.classList.add('hidden');
-        
-        alert("Membership added successfully!");
-        
-        document.getElementById('addMembershipForm').reset();
-        
-        return true; 
-    }
-}
-</script>
 
 <section id="updateMembership" class="hidden">
     <h2>Update Membership</h2>
