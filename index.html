@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showSection('login')">Login</a>
+        <a href="#" onclick="showSection('issueBook')">Issue Book</a>
+        <a href="#" onclick="showSection('returnBook')">Return Book</a>
+        <a href="#" onclick="showSection('addMembership')">Add Membership</a>
+        <a href="#" onclick="showSection('updateMembership')">Update Membership</a>
+        <a href="#" onclick="showSection('payFine')">Pay Fine</a>
+        <a href="#" onclick="showSection('addBook')">Add Book</a>
+        <a href="#" onclick="showSection('updateBook')">Update Book</a>
+        <a href="#" onclick="showSection('userManagement')">User Management</a>
+    </nav>
+    <section id="login" class="hidden">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    
+    <section id="issueBook" class="hidden">
+        <h2>Issue Book</h2>
+        <form id="issueBookForm">
+            <label for="bookName">Book Name:</label>
+            <input type="text" id="bookName" required>
+            <label for="authorName">Author Name (Auto-populated):</label>
+            <input type="text" id="authorName" readonly>
+            <label for="issueDate">Issue Date:</label>
+            <input type="date" id="issueDate" min="" required>
+            <label for="returnDate">Return Date:</label>
+            <input type="date" id="returnDate" required>
+            <button type="submit" onclick="alert('submitted successfully')">Issue Book</button>
+        </form>
+    </section>
+
+    <section id="addMembership" class="hidden">
+        <h2>Add Membership</h2>
+        <form id="addMembershipForm">
+            <label for="memberName">Member Name:</label>
+            <input type="text" id="memberName" required placeholder="Enter member name">
+      
+            <button type="submit" onclick="alert('submitted successfully')">Add Membership</button>
+        </form>
+    </section>
+
+    
+    <section id="updateMembership" class="hidden">
+        <h2>Update Membership</h2>
+        <form id="updateMembershipForm">
+            <label for="updateMemberId">Member ID:</label>
+            <input type="text" id="updateMemberId" required placeholder="Enter member ID to update">
+            
+            <button type="submit"  onclick="alert('submitted successfully')">Update Membership</button>
+        </form>
+    </section>
+
+    
+    <section id="payFine" class="hidden">
+        <h2>Pay Fine</h2>
+        <form id="payFineForm">
+            <label for="fineAmount">Fine Amount:</label>
+            <input type="number" id="fineAmount" required placeholder="Enter fine amount">
+         
+            <button type="submit" onclick="alert('submitted successfully')">Pay Fine</button>
+        </form>
+    </section>
+
+    
+    <section id="addBook" class="hidden">
+        <h2>Add Book</h2>
+        <form id="addBookForm">
+            <label for="newBookName">Book Name:</label>
+            <input type="text" id="newBookName" required placeholder="Enter book name">
+            
+            <button type="submit" onclick="alert('submitted successfully')">Add Book</button>
+        </form>
+    </section>
+
+    
+    <section id="updateBook" class="hidden">
+        <h2>Update Book</h2>
+        <form id="updateBookForm">
+            <label for="bookIdToUpdate">Book ID:</label>
+            <input type="text" id="bookIdToUpdate" required placeholder="Enter book ID to update">
+            
+            <button type="submit" onclick="alert('submitted successfully')">Update Book</button>
+        </form>
+    </section>
+
+  
+    <section id='userManagement' class='hidden'>
+      <h2>User Management</h2> 
+      
+      <form id='userManagementForm'>
+          <div style='margin-bottom: 10px;'>
+              New User: 
+              <input type='radio' name='userType' value='new' checked onchange='toggleUserFields()'> 
+              Existing User: 
+              <input type='radio' name='userType' value='existing' onchange='toggleUserFields()'>
+          </div>
+
+          
+          <div id='newUserFields'>
+              <label for='newUserName'>Name (mandatory):</label> 
+              <input type='text' id='newUserName' required placeholder='Enter your name'>
+          </div> 
+          <div id='existingUserFields' style='display:none;'> 
+              <label for='existingUserId'>User ID:</label> 
+              <input type='text' id='existingUserId' placeholder='Enter user ID'>
+          </div> 
+          <button type='submit' onclick="alert('submitted successfully')">Submit</button> 
+      </form> 
+  </section>
+  </body> 
+  </html>
+
+<style> 
+   body { 
+       font-family: Arial, sans-serif; 
+       margin: 0; 
+       padding: 0; 
+       background-color: #f4f4f4; 
+   }
+
+   header, nav { 
+       background-color: #4CAF50; 
+       color: white; 
+       text-align: center; 
+       padding: 15px 0; 
+       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+   }
+
+   nav a { 
+       color: white; 
+       margin: 0 20px; 
+       text-decoration: none; 
+       transition: color 0.3s ease; 
+   }
+
+   nav a:hover { 
+       color: #d1e7dd; 
+   }
+
+   section { 
+       margin: 20px auto; 
+       padding: 20px; 
+       background-color: white; 
+       border-radius: 8px; 
+       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+       max-width: 600px; 
+       opacity: 0; 
+       transform: translateY(20px); 
+       transition: opacity 0.5s ease, transform 0.5s ease; 
+   }
+
+   section.visible { 
+       opacity: 1; 
+       transform: translateY(0); }
+
+   label, input, button {  
+      display: block;  
+      margin: 10px 0;  
+   } 
+
+   input[type=text], input[type=password], input[type=date], input[type=number] {  
+      width: calc(100% - 20px);  
+      padding: 10px;  
+      border-radius: 4px;  
+      border: 1px solid #ccc;  
+   }
+
+   button {  
+      padding: 10px;  
+      background-color: #4CAF50;  
+      color: white;  
+      border: none;  
+      border-radius: 4px;  
+      cursor: pointer;  
+      transition: background-color 0.3s ease;
+   }
+
+   button:hover {  
+      background-color: #45a049;   
+   }
+   
+</style>
+
+<script>
+
+function showSection(sectionId) {
+    
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+       section.classList.remove('visible');
+       section.classList.add('hidden');
+     });
+
+     
+     const selectedSection = document.getElementById(sectionId);
+     selectedSection.classList.remove('hidden');
+     selectedSection.classList.add('visible');
+}
+
+function toggleUserFields() {
+    const newUserFields = document.getElementById('newUserFields');
+    const existingUserFields = document.getElementById('existingUserFields');
+    
+    if (document.querySelector('input[name=userType]:checked').value === 'new') {
+        newUserFields.style.display = 'block';
+        existingUserFields.style.display = 'none';
+    } else {
+        newUserFields.style.display = 'none';
+        existingUserFields.style.display = 'block';
+    }
+}
+</script>
+
+
+<section id="issueBook" class="hidden">
+    <h2>Issue Book</h2>
+    <form id="issueBookForm" onsubmit="return validateIssueBookForm(event)">
+        <label for="bookName">Name of Book (required):</label>
+        <input type="text" id="bookName" required placeholder="Enter book name" oninput="populateAuthor()">
+        
+        <label for="authorName">Name of Author (Auto-populated):</label>
+        <input type="text" id="authorName" readonly>
+
+        <label for="issueDate">Issue Date (cannot be less than today):</label>
+        <input type="date" id="issueDate" min="" required>
+
+        <label for="returnDate">Return Date (auto-populated +15 days):</label>
+        <input type="date" id="returnDate" required>
+
+        <label for="remarks">Remarks (optional):</label>
+        <textarea id="remarks" rows="3"></textarea>
+
+        <button type="submit" onclick="alert('submitted successfully')">Issue Book</button>
+    </form>
+    <div id="errorMessage" class="error-message hidden"></div>
+</section>
+
+
+<style>
+.error-message {
+   color: red;
+   margin-top: 10px;
+}
+
+.hidden {
+   display: none;
+}
+</style>
+
+<section id="addMembership" class="hidden">
+    <h2>Add Membership</h2>
+    <form id="addMembershipForm" onsubmit="return validateAddMembershipForm(event)">
+        <label for="memberName">Member Name:</label>
+        <input type="text" id="memberName" required placeholder="Enter member name">
+
+        <label for="membershipDuration">Select Membership Duration:</label>
+        <select id="membershipDuration">
+            <option value="6 months" selected>6 Months</option>
+            <option value="1 year">1 Year</option>
+            <option value="2 years">2 Years</option>
+        </select>
+
+        <button type="submit">Add Membership</button>
+    </form>
+    <div id="membershipErrorMessage" class="error-message hidden"></div>
+</section>
+
+<script>
+
+function validateAddMembershipForm(event) {
+    event.preventDefault(); 
+
+    const memberName = document.getElementById('memberName').value;
+
+    let errorMessage = "";
+
+    if (!memberName) {
+        errorMessage += "Member name is mandatory.<br>";
+    }
+
+    const membershipErrorMessageDiv = document.getElementById('membershipErrorMessage');
+
+    if (errorMessage) {
+        membershipErrorMessageDiv.innerHTML = errorMessage;
+        membershipErrorMessageDiv.classList.remove('hidden');
+        return false;
+    } else {
+        membershipErrorMessageDiv.classList.add('hidden');
+        
+        alert("Membership added successfully!");
+        
+        document.getElementById('addMembershipForm').reset();
+        
+        return true; 
+    }
+}
+</script>
+
+<section id="updateMembership" class="hidden">
+    <h2>Update Membership</h2>
+    <form id="updateMembershipForm" onsubmit="return validateUpdateMembershipForm(event)">
+        <label for="membershipNumber">Membership Number (mandatory):</label>
+        <input type="text" id="membershipNumber" required placeholder="Enter membership number">
+        
+        <label for='extendOrCancel'>Action:</label>
+          <select id='extendOrCancel'>
+              <option value='extend' selected>Extend Membership</option>
+              <option value='cancel'>Cancel Membership</option>
+          </select>
+
+         
+          <label for='extensionDuration'>Extension Duration:</label>
+          <select id='extensionDuration'>
+              <option value='6 months' selected>6 Months</option>
+              <option value='1 year'>1 Year</option>
+              <option value='2 years'>2 Years</option>
+          </select>
+
+          <button type='submit'>Update Membership</button> 
+      </form> 
+      <div id='updateMembershipError' class='error-message hidden'></div> 
+  </section> 
+ 
+<section id="addBook" class="hidden">
+    <h2>Add Book</h2>
+    <form id="addBookForm" onsubmit="return validateAddBookForm(event)">
+    <label for="newBookType">Select Type:</label>
+    <select id='newBookType'>
+    <option value='book' selected>Book</option>
+    <option value='movie'>Movie</option>
+    </select>
+    
+    <label for='newBookName'>Book Name:</label> 
+    <input type='text' id='newBookName' required placeholder='Enter book name'> 
+    
+    <label for='newAuthor'>Author Name:</label> 
+    <input type='text' id='newAuthor' required placeholder='Enter author name'> 
+    
+    <label for='newSerialNo'>Serial No:</label> 
+    <input type='text' id='newSerialNo' required placeholder='Enter serial number'> 
+    
+    <button type='submit'>Add Book</button> 
+    <div id='addBookError' class='error-message hidden'></div> 
+    </form> 
+    </section>
+    
+    
+    
+
+<section id="updateBook" class="hidden">
+    <h2>Update Book</h2>
+    <form id="updateBookForm" onsubmit="return validateUpdateBookForm(event)">
+    <label for="updateType">Select Type:</label>
+    <select id='updateType'>
+    <option value='book' selected>Book</option>
+    <option value='movie'>Movie</option>
+    </select>
+    
+    <label for='bookIdToUpdate'>ID of Book:</label> 
+    <input type='text' id='bookIdToUpdate' required placeholder='Enter book ID to update'> 
+    
+    <label for='updatedTitle'>Updated Title:</label> 
+    <input type='text' id='updatedTitle' required placeholder='Enter updated title'> 
+    
+    <label for='updatedAuthor'>Updated Author:</label> 
+    <input type='text' id='updatedAuthor' required placeholder='Enter updated author name'> 
+    
+    <div id='updateBookError' class='error-message hidden'></div> 
+    <button type='submit'>Update Book</button> 
+    </form> 
+    </section>
+ 
+<section id='userManagement' class='hidden'>
+    <h2>User Management</h2> 
+    <form id='userManagementForm' onsubmit="return validateUserManagementForm(event)">
+        <div style='margin-bottom: 10px;'>
+            New User: 
+            <input type='radio' name='userType' value='new' checked onchange='toggleUserFields()'> 
+            Existing User: 
+            <input type='radio' name='userType' value='existing' onchange='toggleUserFields()'>
+        </div>
+        
+        
+        <div id='newUserFields'>
+            <label for='newUserName'>Name:</label> 
+            <input type='text' id='newUserName' required placeholder='Enter your name'> 
+        </div>
+        
+       
+        <div id='existingUserFields' style='display:none;'>
+            <label for='existingUserId'>User ID:</label> 
+            <input type='text' id='existingUserId' placeholder='Enter user ID'>
+        </div>
+        
+        <button type='submit' onclick="alert('Submitted succesfully')">Submit</button> 
+        <div id='userManagementError' class='error-message hidden'></div>
+    </form> 
+</section>
+
+
+
+<style>
+    .error-message {
+        color: red;
+        margin-top: 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+<html>
+    
+<section id="returnBook" class="hidden">
+    <h2>Return Book</h2>
+    <form id="returnBookForm" onsubmit="return validateReturnBookForm(event)">
+        <label for="returnBookName">Name of Book (required):</label>
+        <input type="text" id="returnBookName" required placeholder="Enter book name" oninput="populateReturnAuthor()">
+
+        <label for="returnAuthorName">Author Name (Auto-populated):</label>
+        <input type="text" id="returnAuthorName" readonly>
+
+        <label for="serialNo">Serial No of Book (mandatory):</label>
+        <input type="text" id="serialNo" required placeholder="Enter serial number">
+
+        <label for="issueDate">Issue Date (Auto-populated):</label>
+        <input type="date" id="issueDate" readonly>
+
+        <label for="returnDate">Return Date (can be edited):</label>
+        <input type="date" id="returnDate" required>
+
+        <button type="submit">Confirm Return</button>
+    </form>
+    <div id="returnErrorMessage" class="error-message hidden"></div>
+</section>
+<style>
+.error-message {
+   color: red;
+   margin-top: 10px;
+}
+
+.hidden {
+   display: none;
+}
+</style>
+</body>
+</html>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <span>|</span>
+            <a href="#terms">Terms of Service</a>
+            <span>|</span>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </div>
+</footer>
+<style>
+    .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    margin-top: 5px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+ .footer{
+    align-content: normal;
+ }
+</style>
